@@ -1,6 +1,6 @@
 version: '3.7'
 
-servises:
+services:
   regression:
     image: python:3.12.0a4-alpine3.17
     build:
