@@ -7,26 +7,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-      - name: Checkout (copy) gh-pages repository to GitHub runner
-        uses: actions/checkout@v2
+      - name: Setup Python
+        uses: actions/setup-python@v4
         with:
-          ref: gh-pages
-          path: ./.github/gh-pages
+          python-version: "3.12"
 
-      - name: Run UI-tests via docker-compose
-        run: |
-          venv/docker-compose up --exit-code-from regression || true
+      - name: Install Google Chrome
+        run: sudo apt-get install google-chrome-stable
 
-      - name: Generate Allure report
-        run: |
-          sudo docker-compose run regression /bin/sh -c "allure generate allure-results --clean -o allure-report"
+      - name: Install dependencies
+        run: pip install -r requirements.txt
 
-      - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@4.1.5
-        with:
-          token: ${{ secrets.CI_TOKEN }}
-          branch: gh-pages
-          folder: allure-report
-          clean: true
+      - name: Run tests
+        run: pytest
