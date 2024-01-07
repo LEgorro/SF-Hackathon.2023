@@ -22,7 +22,7 @@ class MainPage(BasePage):
     def header_twitch_link_work(self):
         self.wait.until(EC.element_to_be_clickable(self.header_twitch_link)).click()
 
-    @allure.step('Click on "Get Prophecy" button')
+    @allure.step('Click on "Get prophecy" button')
     def prophecy_button_work(self):
         button = self.wait.until(EC.element_to_be_clickable(self.btn_get_prophecy)).click()
         self.driver.execute_script("arguments[0].click();", button)
