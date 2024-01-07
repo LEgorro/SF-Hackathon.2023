@@ -95,6 +95,7 @@ jobs:
           name: allure-results
           path: allure-results
           retention-days: 1
+          if-no-files-found: ok
 
   generate-report:
     runs-on: ubuntu-latest
