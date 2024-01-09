@@ -3,7 +3,7 @@ import allure
 
 from config.links import Links
 from base.base_test import BaseTest
-from pages.main_page import MainPage
+from pages.telegram_bot_page import TelegramBotPage
 
 @allure.feature("Links to social networks")
 class TestMainPage(BaseTest):
@@ -28,7 +28,14 @@ class TestMainPage(BaseTest):
     @allure.severity("Critical")
     @allure.link(name = "Testing page", url = "https://dima731515.github.io/hakaton/html/")
     @pytest.mark.smoke
-    def test_meet_TG_bot_btn_work(self):
+    def test_meet_tg_bot_btn_work(self):
         self.main_page.open()
         self.main_page.meet_TG_bot_button_work()
+        self.main_page.is_opened("https://t.me/PriyatniyIldar_bot")
 
+
+
+    def test_open(self):
+        self.telegram_bot_page.open()
+        self.telegram_bot_page.is_opened("https://t.me/PriyatniyIldar_bot")
+        assert self.driver.current_url == "https://t.me/PriyatniyIldar_bot"

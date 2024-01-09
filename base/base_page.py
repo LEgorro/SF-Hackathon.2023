@@ -15,9 +15,9 @@ class BasePage:
         with allure.step(f"Open testing page (case №10)"):
             self.driver.get(self.PAGE_URL)
 
-    def is_opened(self):
+    def is_opened(self, url):
         with allure.step(f"Page {self.PAGE_URL} is opened"):
-            self.wait.until(EC.url_to_be(self.PAGE_URL))
+            self.wait.until(EC.url_to_be(url))
 
     def make_screenshot(self, screenshot_name):
         allure.attach(
