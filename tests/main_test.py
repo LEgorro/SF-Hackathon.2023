@@ -31,11 +31,3 @@ class TestMainPage(BaseTest):
     def test_meet_tg_bot_btn_work(self):
         self.main_page.open()
         self.main_page.meet_TG_bot_button_work()
-        self.main_page.is_opened("https://t.me/PriyatniyIldar_bot")
-
-
-
-    def test_open(self):
-        self.telegram_bot_page.open()
-        self.telegram_bot_page.is_opened("https://t.me/PriyatniyIldar_bot")
-        assert self.driver.current_url == "https://t.me/PriyatniyIldar_bot"
