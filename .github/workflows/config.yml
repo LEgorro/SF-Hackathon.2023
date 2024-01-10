@@ -55,12 +55,14 @@ jobs:
       - run: mkdir allure-results && unzip artifacts.zip -d allure-results
       - run: mkdir old_pages pages_history && unzip pages.zip -d old_pages && tar -xvf old_pages/artifact.tar -C pages_history
       - run: cp pages_history/history/* allure-results && cp -r pages_history/history allure-results
+        continue-on-error: true
       - name: Store allure history
         uses: actions/upload-artifact@v3
         with:
           name: allure-results
           path: allure-results
-          retention-days: 1
+          retention-days: 5
+        continue-on-error: true
 
   ui-tests:
     runs-on: ubuntu-latest
@@ -95,7 +97,7 @@ jobs:
         with:
           name: allure-results
           path: allure-results
-          retention-days: 1
+          retention-days: 5
         continue-on-error: true
 
   generate-report:
